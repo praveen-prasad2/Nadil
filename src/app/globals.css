@@ -1,41 +1,67 @@
 @import "tailwindcss";
 
+/* Arial font from public/fonts */
+@font-face {
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/ARIAL.TTF") format("truetype");
+}
+
+@font-face {
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/ARIALBD.TTF") format("truetype");
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --surface: #fafafa;
-  --border: #e2e8f0;
   --nadil-red: #D62839;
-  --nadil-blue: #175676;
+  --nadil-crimson: #BA324F;
+  --nadil-deep: #175676;
   --nadil-sky: #4BA3C3;
+  --bg-dark: #0a1628;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-phenomena), ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--bg-dark);
+  --color-foreground: #f1f5f9;
+  --font-sans: "Arial", Arial, Helvetica, sans-serif;
   --font-mono: ui-monospace, monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-phenomena), ui-sans-serif, system-ui, sans-serif;
+  background: var(--bg-dark);
+  color: #f1f5f9;
+  font-family: "Arial", Arial, Helvetica, sans-serif;
 }
 
 .font-display {
-  font-family: var(--font-phenomena), ui-sans-serif, system-ui, sans-serif;
+  font-family: "Arial", Arial, Helvetica, sans-serif;
 }
 
-/* Modern card - clean white with subtle shadow */
-.modern-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease;
+@keyframes orb-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -30px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
 }
 
-.modern-card:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+.animate-orb {
+  animation: orb-float 20s ease-in-out infinite;
+}
+
+/* Futuristic glass card */
+.futuristic-card {
+  background: rgba(23, 86, 118, 0.15);
+  border: 1px solid rgba(75, 163, 195, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+}
+
+.futuristic-card:hover {
+  border-color: rgba(75, 163, 195, 0.4);
+  box-shadow: 0 0 40px -10px rgba(75, 163, 195, 0.25);
 }

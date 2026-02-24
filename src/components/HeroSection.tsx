@@ -6,26 +6,34 @@ import { motion } from "framer-motion";
 
 export function HeroSection() {
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-white px-6 pt-20">
-      {/* Subtle background */}
+    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-20">
+      {/* Background */}
       <div className="absolute inset-0">
         <Image
           src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop"
           alt=""
           fill
           priority
-          className="object-cover opacity-[0.06]"
+          className="object-cover opacity-20"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-white" />
+        <div className="absolute inset-0 bg-[#0a1628]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a1628]/80 to-[#0a1628]" />
       </div>
 
-      {/* Subtle grid */}
+      {/* Gradient orbs */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -left-40 -top-40 h-96 w-96 animate-orb rounded-full bg-[#D62839]/20 blur-[100px]" />
+        <div className="absolute right-0 top-1/2 h-80 w-80 animate-orb rounded-full bg-[#4BA3C3]/15 blur-[80px]" style={{ animationDelay: "-5s" }} />
+        <div className="absolute bottom-20 left-1/2 h-64 w-64 animate-orb rounded-full bg-[#175676]/30 blur-[60px]" style={{ animationDelay: "-10s" }} />
+      </div>
+
+      {/* Grid overlay */}
       <div
-        className="absolute inset-0 opacity-[0.4]"
+        className="absolute inset-0 opacity-[0.06]"
         style={{
-          backgroundImage: `linear-gradient(#e2e8f0 1px, transparent 1px), linear-gradient(90deg, #e2e8f0 1px, transparent 1px)`,
-          backgroundSize: "64px 64px",
+          backgroundImage: `linear-gradient(#4BA3C3 1px, transparent 1px), linear-gradient(90deg, #4BA3C3 1px, transparent 1px)`,
+          backgroundSize: "80px 80px",
         }}
       />
 
@@ -34,22 +42,24 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl"
+          className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl"
         >
           Certified Firestop & Passive Fire Protection Solutions
         </motion.h1>
 
         <motion.p
-          className="mt-6 font-display text-xl font-semibold tracking-wide text-[#175676] sm:text-2xl"
+          className="mt-6 font-display text-xl font-semibold tracking-wide sm:text-2xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
         >
-          Securing Spaces. Protecting Life.
+          <span className="bg-gradient-to-r from-[#4BA3C3] to-[#175676] bg-clip-text text-transparent">
+            Securing Spaces. Protecting Life.
+          </span>
         </motion.p>
 
         <motion.p
-          className="mt-6 max-w-2xl mx-auto text-base leading-relaxed text-slate-600 sm:text-lg"
+          className="mt-6 max-w-2xl mx-auto text-base leading-relaxed text-slate-300 sm:text-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.25 }}
@@ -65,7 +75,7 @@ export function HeroSection() {
         >
           <Link href="#contact">
             <motion.span
-              className="font-display inline-block rounded-xl bg-[#D62839] px-10 py-3.5 text-sm font-bold tracking-wide text-white shadow-lg shadow-red-500/25 transition-all hover:bg-[#BA324F] hover:shadow-xl hover:shadow-red-500/30"
+              className="font-display inline-block rounded-xl bg-[#D62839] px-10 py-3.5 text-sm font-bold tracking-wide text-white shadow-[0_0_30px_-5px_rgba(214,40,57,0.5)] transition-all hover:bg-[#BA324F] hover:shadow-[0_0_40px_-5px_rgba(214,40,57,0.6)]"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -74,7 +84,7 @@ export function HeroSection() {
           </Link>
           <Link href="/services">
             <motion.span
-              className="font-display inline-block rounded-xl border-2 border-slate-900 bg-transparent px-10 py-3.5 text-sm font-bold tracking-wide text-slate-900 transition-all hover:bg-slate-900 hover:text-white"
+              className="font-display inline-block rounded-xl border-2 border-[#4BA3C3]/60 bg-[#4BA3C3]/10 px-10 py-3.5 text-sm font-bold tracking-wide text-[#4BA3C3] backdrop-blur-sm transition-all hover:bg-[#4BA3C3]/20"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -95,8 +105,8 @@ export function HeroSection() {
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <span className="font-display text-xs font-medium uppercase tracking-widest text-slate-400">Scroll</span>
-          <div className="h-8 w-px bg-slate-300" />
+          <span className="font-display text-xs font-medium uppercase tracking-widest text-slate-500">Scroll</span>
+          <div className="h-8 w-px bg-gradient-to-b from-[#4BA3C3]/60 to-transparent" />
         </motion.div>
       </motion.div>
     </section>

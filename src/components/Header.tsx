@@ -33,7 +33,7 @@ export function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isHero
           ? "bg-transparent"
-          : "bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm"
+          : "bg-[#0a1628]/90 backdrop-blur-xl border-b border-[#4BA3C3]/20"
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -55,8 +55,8 @@ export function Header() {
               <Link
                 href={item.href}
                 className={`font-display text-sm font-semibold tracking-wide transition-colors ${
-                  isHero ? "text-slate-700 hover:text-slate-900" : "text-slate-600 hover:text-slate-900"
-                } ${pathname === item.href ? "text-[#D62839]" : ""}`}
+                  isHero ? "text-white/90 hover:text-[#4BA3C3]" : "text-slate-300 hover:text-[#4BA3C3]"
+                } ${pathname === item.href ? "text-[#4BA3C3]" : ""}`}
               >
                 {item.label}
               </Link>

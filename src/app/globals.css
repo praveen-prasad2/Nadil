@@ -22,19 +22,19 @@
   --nadil-crimson: #BA324F;
   --nadil-deep: #175676;
   --nadil-sky: #4BA3C3;
-  --bg-dark: #0a1628;
+  --bg-light: #e8eef6;
 }
 
 @theme inline {
-  --color-background: var(--bg-dark);
-  --color-foreground: #f1f5f9;
+  --color-background: var(--bg-light);
+  --color-foreground: #0f172a;
   --font-sans: "Arial", Arial, Helvetica, sans-serif;
   --font-mono: ui-monospace, monospace;
 }
 
 body {
-  background: var(--bg-dark);
-  color: #f1f5f9;
+  background: var(--bg-light);
+  color: #0f172a;
   font-family: "Arial", Arial, Helvetica, sans-serif;
 }
 
@@ -54,14 +54,14 @@ body {
 
 /* Futuristic glass card */
 .futuristic-card {
-  background: rgba(23, 86, 118, 0.15);
-  border: 1px solid rgba(75, 163, 195, 0.2);
+  background: rgba(241, 245, 249, 0.95);
+  border: 1px solid rgba(75, 163, 195, 0.25);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   transition: all 0.3s ease;
 }
 
 .futuristic-card:hover {
-  border-color: rgba(75, 163, 195, 0.4);
-  box-shadow: 0 0 40px -10px rgba(75, 163, 195, 0.25);
+  border-color: rgba(75, 163, 195, 0.45);
+  box-shadow: 0 0 40px -10px rgba(75, 163, 195, 0.2);
 }

@@ -21,7 +21,7 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-[#0a1628]">
+    <div className="min-h-screen bg-[#e8eef6]">
       <Header />
 
       <main>
@@ -36,7 +36,7 @@ export default function ServicesPage() {
             }}
           />
           <div className="relative mx-auto max-w-4xl text-center">
-            <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            <h1 className="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
               Passive Fire Protection <span className="text-[#4BA3C3]">Services</span>
             </h1>
             <p className="mt-6 font-display text-xl font-semibold tracking-wide text-[#4BA3C3]">
@@ -49,7 +49,7 @@ export default function ServicesPage() {
         <section className="py-16 px-6">
           <div className="mx-auto max-w-3xl">
             <AnimatedSection>
-              <p className="text-center text-lg leading-relaxed text-slate-300">
+              <p className="text-center text-lg leading-relaxed text-slate-600">
                 Our firestop services are engineered to restore and maintain fire-rated assemblies affected by mechanical, electrical, and structural penetrations.
               </p>
             </AnimatedSection>
@@ -61,7 +61,7 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_50%_50%,rgba(23,86,118,0.15)_0%,transparent_70%)]" />
           <div className="relative mx-auto max-w-4xl">
             <AnimatedSection>
-              <h2 className="font-display text-center text-2xl font-bold tracking-tight text-white sm:text-3xl">
+              <h2 className="font-display text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                 We Deliver
               </h2>
             </AnimatedSection>
@@ -72,13 +72,13 @@ export default function ServicesPage() {
                     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#4BA3C3] to-[#175676] text-lg font-bold text-white">
                       ✓
                     </span>
-                    <p className="font-display text-lg font-semibold text-slate-200">{service}</p>
+                    <p className="font-display text-lg font-semibold text-slate-700">{service}</p>
                   </div>
                 </AnimatedCard>
               ))}
             </div>
             <AnimatedSection>
-              <p className="mt-12 text-center text-slate-500">
+              <p className="mt-12 text-center text-slate-600">
                 All installations follow tested and approved system specifications.
               </p>
             </AnimatedSection>
@@ -89,7 +89,7 @@ export default function ServicesPage() {
         <section className="py-28 px-6">
           <div className="mx-auto max-w-6xl">
             <AnimatedSection>
-              <h2 className="font-display text-center text-2xl font-bold tracking-tight text-white sm:text-3xl">
+              <h2 className="font-display text-center text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                 Our Expertise
               </h2>
             </AnimatedSection>
@@ -135,10 +135,10 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_50%,rgba(214,40,57,0.08)_0%,transparent_50%)]" />
           <div className="relative mx-auto max-w-2xl text-center">
             <AnimatedSection>
-              <h2 className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
+              <h2 className="font-display text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                 Ready to Secure Your Project?
               </h2>
-              <p className="mt-4 text-slate-400">
+              <p className="mt-4 text-slate-600">
                 Request a technical consultation for your next firestop project.
               </p>
               <Link

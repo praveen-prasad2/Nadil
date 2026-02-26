@@ -9,7 +9,7 @@ import { ContactForm } from "@/components/ContactForm";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#0a1628]">
+    <div className="min-h-screen bg-[#e8eef6]">
       <Header />
 
       <main>
@@ -25,10 +25,10 @@ export default function Home() {
                   Securing Spaces. Protecting Life.
                 </span>
               </h2>
-              <p className="mt-10 text-center text-lg leading-relaxed text-slate-300 sm:text-xl">
+              <p className="mt-10 text-center text-lg leading-relaxed text-slate-600 sm:text-xl">
                 At Nadil, passive fire protection is not a checklist item. It is a structural safety system.
               </p>
-              <p className="mt-6 text-center text-lg leading-relaxed text-slate-300">
+              <p className="mt-6 text-center text-lg leading-relaxed text-slate-600">
                 We specialize in certified firestop installations that preserve fire compartmentation, prevent smoke spread, and maintain the integrity of fire-rated walls and floors.
               </p>
               <div className="mt-14 flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-10">
@@ -45,10 +45,10 @@ export default function Home() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_80%_at_50%_50%,rgba(23,86,118,0.2)_0%,transparent_70%)]" />
           <div className="relative mx-auto max-w-6xl">
             <AnimatedSection>
-              <h2 className="font-display text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              <h2 className="font-display text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
                 Our <span className="text-[#4BA3C3]">Services</span>
               </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-center text-slate-400">
+              <p className="mx-auto mt-4 max-w-2xl text-center text-slate-600">
                 Engineered firestop solutions to restore and maintain fire-rated assemblies.
               </p>
             </AnimatedSection>
@@ -86,7 +86,7 @@ export default function Home() {
                           <h3 className="font-display text-xl font-bold text-white sm:text-2xl">{service.title}</h3>
                         </div>
                       </div>
-                      <p className="p-6 text-slate-400">{service.desc}</p>
+                      <p className="p-6 text-slate-600">{service.desc}</p>
                     </div>
                   </Link>
                 </AnimatedCard>
@@ -108,10 +108,10 @@ export default function Home() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,rgba(214,40,57,0.06)_0%,transparent_50%)]" />
           <div className="relative mx-auto max-w-6xl">
             <AnimatedSection>
-              <h2 className="font-display text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              <h2 className="font-display text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
                 Operating Across the <span className="text-[#4BA3C3]">Gulf</span>
               </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-center text-slate-400">
+              <p className="mx-auto mt-4 max-w-2xl text-center text-slate-600">
                 NADIL delivers firestop application services in key markets.
               </p>
             </AnimatedSection>
@@ -161,10 +161,10 @@ export default function Home() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,rgba(75,163,195,0.08)_0%,transparent_50%)]" />
           <div className="relative mx-auto max-w-4xl">
             <AnimatedSection>
-              <h2 className="font-display text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              <h2 className="font-display text-center text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
                 Contact <span className="text-[#4BA3C3]">Us</span>
               </h2>
-              <p className="mt-4 text-center text-slate-400">
+              <p className="mt-4 text-center text-slate-600">
                 For fire stop application inquiries and project quotes.
               </p>
               <div className="mt-16">

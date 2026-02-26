@@ -14,11 +14,11 @@ export function HeroSection() {
           alt=""
           fill
           priority
-          className="object-cover opacity-20"
+          className="object-cover opacity-35"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[#0a1628]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a1628]/80 to-[#0a1628]" />
+        <div className="absolute inset-0 bg-[#e8eef6]/85" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#e8eef6]/70 to-[#e8eef6]" />
       </div>
 
       {/* Gradient orbs */}
@@ -42,7 +42,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl"
+          className="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl"
         >
           Certified Firestop & Passive Fire Protection Solutions
         </motion.h1>
@@ -59,7 +59,7 @@ export function HeroSection() {
         </motion.p>
 
         <motion.p
-          className="mt-6 max-w-2xl mx-auto text-base leading-relaxed text-slate-300 sm:text-lg"
+          className="mt-6 max-w-2xl mx-auto text-base leading-relaxed text-slate-600 sm:text-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.25 }}
@@ -105,7 +105,7 @@ export function HeroSection() {
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <span className="font-display text-xs font-medium uppercase tracking-widest text-slate-500">Scroll</span>
+          <span className="font-display text-xs font-medium uppercase tracking-widest text-slate-600">Scroll</span>
           <div className="h-8 w-px bg-gradient-to-b from-[#4BA3C3]/60 to-transparent" />
         </motion.div>
       </motion.div>

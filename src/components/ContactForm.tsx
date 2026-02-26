@@ -72,7 +72,7 @@ export function ContactForm() {
   return (
     <div className="flex flex-col gap-12 lg:flex-row lg:items-stretch lg:gap-12">
       {/* Contact info - dark theme */}
-      <div className="w-full rounded-2xl border border-[#4BA3C3]/20 bg-[#175676]/15 p-8 backdrop-blur-sm lg:max-w-md">
+      <div className="w-full rounded-2xl border border-[#4BA3C3]/25 bg-slate-100/95 p-8 backdrop-blur-sm shadow-sm lg:max-w-md">
         <div className="space-y-8">
           {/* Phone */}
           <div className="flex gap-5">
@@ -82,8 +82,8 @@ export function ContactForm() {
               </svg>
             </div>
             <div>
-              <p className="font-display text-sm font-bold text-white">Phone</p>
-              <a href={`tel:${contactInfo.phone.replace(/\s/g, "")}`} className="mt-1 block text-slate-300 hover:text-[#4BA3C3]">
+              <p className="font-display text-sm font-bold text-slate-800">Phone</p>
+              <a href={`tel:${contactInfo.phone.replace(/\s/g, "")}`} className="mt-1 block text-slate-600 hover:text-[#4BA3C3]">
                 {contactInfo.phone}
               </a>
             </div>
@@ -97,8 +97,8 @@ export function ContactForm() {
               </svg>
             </div>
             <div>
-              <p className="font-display text-sm font-bold text-white">Email ID</p>
-              <a href={`mailto:${contactInfo.email}`} className="mt-1 block text-slate-300 hover:text-[#4BA3C3]">
+              <p className="font-display text-sm font-bold text-slate-800">Email ID</p>
+              <a href={`mailto:${contactInfo.email}`} className="mt-1 block text-slate-600 hover:text-[#4BA3C3]">
                 {contactInfo.email}
               </a>
             </div>
@@ -112,15 +112,15 @@ export function ContactForm() {
               </svg>
             </div>
             <div>
-              <p className="font-display text-sm font-bold text-white">Address</p>
-              <p className="mt-1 text-slate-300">{contactInfo.address}</p>
+              <p className="font-display text-sm font-bold text-slate-800">Address</p>
+              <p className="mt-1 text-slate-600">{contactInfo.address}</p>
             </div>
           </div>
         </div>
 
         {/* Social icons */}
         <div className="mt-10 border-t border-[#4BA3C3]/20 pt-8">
-          <p className="mb-4 font-display text-sm font-bold text-white">Follow us</p>
+          <p className="mb-4 font-display text-sm font-bold text-slate-800">Follow us</p>
           <div className="flex gap-3">
             {socialLinks.map((social) => (
               <a
@@ -128,7 +128,7 @@ export function ContactForm() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#4BA3C3]/20 bg-[#0a1628]/50 text-slate-400 transition-all hover:border-[#4BA3C3]/50 hover:text-[#4BA3C3]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#4BA3C3]/25 bg-slate-100 text-slate-600 transition-all hover:border-[#4BA3C3]/50 hover:text-[#4BA3C3]"
                 aria-label={social.name}
               >
                 {social.icon}
@@ -141,10 +141,10 @@ export function ContactForm() {
       {/* Form */}
       <form
         onSubmit={handleSubmit}
-        className="w-full flex-1 space-y-6 rounded-2xl border border-[#4BA3C3]/20 bg-[#175676]/10 p-8 backdrop-blur-sm lg:max-w-md"
+        className="w-full flex-1 space-y-6 rounded-2xl border border-[#4BA3C3]/25 bg-slate-100/95 p-8 backdrop-blur-sm shadow-sm lg:max-w-md"
       >
         <div>
-          <label htmlFor="name" className="mb-2 block text-sm font-semibold text-slate-300">
+          <label htmlFor="name" className="mb-2 block text-sm font-semibold text-slate-700">
             Name
           </label>
           <input
@@ -152,12 +152,12 @@ export function ContactForm() {
             id="name"
             name="name"
             required
-            className="w-full rounded-xl border border-[#4BA3C3]/20 bg-[#0a1628]/50 px-4 py-3 text-white placeholder-slate-500 focus:border-[#4BA3C3]/50 focus:outline-none focus:ring-1 focus:ring-[#4BA3C3]/50"
+            className="w-full rounded-xl border border-[#4BA3C3]/25 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-[#4BA3C3]/50 focus:outline-none focus:ring-1 focus:ring-[#4BA3C3]/50"
             placeholder="Your name"
           />
         </div>
         <div>
-          <label htmlFor="email" className="mb-2 block text-sm font-semibold text-slate-300">
+          <label htmlFor="email" className="mb-2 block text-sm font-semibold text-slate-700">
             Email
           </label>
           <input
@@ -165,24 +165,24 @@ export function ContactForm() {
             id="email"
             name="email"
             required
-            className="w-full rounded-xl border border-[#4BA3C3]/20 bg-[#0a1628]/50 px-4 py-3 text-white placeholder-slate-500 focus:border-[#4BA3C3]/50 focus:outline-none focus:ring-1 focus:ring-[#4BA3C3]/50"
+            className="w-full rounded-xl border border-[#4BA3C3]/25 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-[#4BA3C3]/50 focus:outline-none focus:ring-1 focus:ring-[#4BA3C3]/50"
             placeholder="your@email.com"
           />
         </div>
         <div>
-          <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-slate-300">
+          <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-slate-700">
             Phone
           </label>
           <input
             type="tel"
             id="phone"
             name="phone"
-            className="w-full rounded-xl border border-[#4BA3C3]/20 bg-[#0a1628]/50 px-4 py-3 text-white placeholder-slate-500 focus:border-[#4BA3C3]/50 focus:outline-none focus:ring-1 focus:ring-[#4BA3C3]/50"
+            className="w-full rounded-xl border border-[#4BA3C3]/25 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-[#4BA3C3]/50 focus:outline-none focus:ring-1 focus:ring-[#4BA3C3]/50"
             placeholder="+971 50 123 4567"
           />
         </div>
         <div>
-          <label htmlFor="message" className="mb-2 block text-sm font-semibold text-slate-300">
+          <label htmlFor="message" className="mb-2 block text-sm font-semibold text-slate-700">
             Message
           </label>
           <textarea
@@ -190,7 +190,7 @@ export function ContactForm() {
             name="message"
             required
             rows={4}
-            className="w-full rounded-xl border border-[#4BA3C3]/20 bg-[#0a1628]/50 px-4 py-3 text-white placeholder-slate-500 focus:border-[#4BA3C3]/50 focus:outline-none focus:ring-1 focus:ring-[#4BA3C3]/50"
+            className="w-full rounded-xl border border-[#4BA3C3]/25 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-[#4BA3C3]/50 focus:outline-none focus:ring-1 focus:ring-[#4BA3C3]/50"
             placeholder="Your message..."
           />
         </div>

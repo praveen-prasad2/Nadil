@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#0a1628]">
+    <div className="min-h-screen bg-[#e8eef6]">
       <Header />
 
       <main>
@@ -25,7 +25,7 @@ export default function AboutPage() {
             }}
           />
           <div className="relative mx-auto max-w-4xl text-center">
-            <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            <h1 className="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
               About <span className="text-[#D62839]">Nadil</span>
             </h1>
             <p className="mt-6 font-display text-xl font-semibold tracking-wide text-[#4BA3C3]">
@@ -38,10 +38,10 @@ export default function AboutPage() {
         <section className="py-16 px-6">
           <div className="mx-auto max-w-3xl">
             <AnimatedSection>
-              <p className="text-lg leading-relaxed text-slate-300">
+              <p className="text-lg leading-relaxed text-slate-600">
                 Nadil is a specialized passive fire protection contractor delivering certified firestop systems across complex construction environments. We ensure that MEP penetrations and movement joints do not compromise fire-rated assemblies.
               </p>
-              <p className="mt-6 text-lg leading-relaxed text-slate-300">
+              <p className="mt-6 text-lg leading-relaxed text-slate-600">
                 Our team works with consultants, contractors, and project managers to deliver technically compliant and fully documented fire compartmentation solutions.
               </p>
             </AnimatedSection>
@@ -58,13 +58,13 @@ export default function AboutPage() {
                   Our Philosophy
                 </span>
               </h2>
-              <div className="mt-16 rounded-2xl border border-[#4BA3C3]/20 bg-[#175676]/20 p-12 backdrop-blur-sm">
-                <p className="font-display text-center text-xl font-semibold italic text-slate-200 sm:text-2xl">
+              <div className="mt-16 rounded-2xl border border-[#4BA3C3]/25 bg-slate-100/90 p-12 backdrop-blur-sm shadow-sm">
+                <p className="font-display text-center text-xl font-semibold italic text-slate-800 sm:text-2xl">
                   Fire protection is not visible once a building is complete.
                   <br />
                   But when it is needed, it becomes everything.
                 </p>
-                <p className="mt-2 text-center text-slate-400">
+                <p className="mt-2 text-center text-slate-600">
                   That is why our work focuses on precision, compliance, and technical integrity.
                 </p>
               </div>

@@ -1,22 +1,5 @@
 @import "tailwindcss";
 
-/* Arial font from public/fonts */
-@font-face {
-  font-family: "Arial";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/ARIAL.TTF") format("truetype");
-}
-
-@font-face {
-  font-family: "Arial";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("/fonts/ARIALBD.TTF") format("truetype");
-}
-
 :root {
   --nadil-red: #D62839;
   --nadil-crimson: #BA324F;
@@ -28,18 +11,96 @@
 @theme inline {
   --color-background: var(--bg-light);
   --color-foreground: #0f172a;
-  --font-sans: "Arial", Arial, Helvetica, sans-serif;
-  --font-mono: ui-monospace, monospace;
+  --font-heading: var(--font-bebas-neue), system-ui, sans-serif;
+  --font-body: var(--font-poppins), system-ui, sans-serif;
+  --font-sans: var(--font-poppins), system-ui, sans-serif;
 }
 
 body {
   background: var(--bg-light);
   color: #0f172a;
-  font-family: "Arial", Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), system-ui, sans-serif;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading,
 .font-display {
-  font-family: "Arial", Arial, Helvetica, sans-serif;
+  font-family: var(--font-bebas-neue), system-ui, sans-serif;
+}
+
+h1 {
+  letter-spacing: 0.04em;
+}
+
+h2 {
+  letter-spacing: 0.035em;
+}
+
+h3 {
+  letter-spacing: 0.03em;
+}
+
+h4,
+h5,
+h6 {
+  letter-spacing: 0.025em;
+}
+
+.font-heading:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6),
+.font-display:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+  letter-spacing: 0.03em;
+}
+
+.font-heading.uppercase,
+.font-display.uppercase,
+h1.uppercase,
+h2.uppercase,
+h3.uppercase,
+h4.uppercase,
+h5.uppercase,
+h6.uppercase {
+  letter-spacing: 0.12em;
+}
+
+.font-body {
+  font-family: var(--font-poppins), system-ui, sans-serif;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(75, 163, 195, 0.18);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 24px -4px rgba(23, 86, 118, 0.08);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(75, 163, 195, 0.35);
+  box-shadow: 0 12px 40px -8px rgba(23, 86, 118, 0.15);
+  transform: translateY(-4px);
+}
+
+.futuristic-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(75, 163, 195, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.futuristic-card:hover {
+  border-color: rgba(75, 163, 195, 0.4);
+  box-shadow: 0 12px 40px -8px rgba(75, 163, 195, 0.2);
+}
+
+.section-padding {
+  padding: 7rem 1.5rem;
 }
 
 @keyframes orb-float {
@@ -52,16 +113,24 @@ body {
   animation: orb-float 20s ease-in-out infinite;
 }
 
-/* Futuristic glass card */
-.futuristic-card {
-  background: rgba(241, 245, 249, 0.95);
-  border: 1px solid rgba(75, 163, 195, 0.25);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  transition: all 0.3s ease;
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-.futuristic-card:hover {
-  border-color: rgba(75, 163, 195, 0.45);
-  box-shadow: 0 0 40px -10px rgba(75, 163, 195, 0.2);
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

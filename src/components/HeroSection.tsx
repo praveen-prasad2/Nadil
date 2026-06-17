@@ -1,112 +1,120 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { Button } from "@/components/ui/Button";
+
+function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (v) => Math.round(v));
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          animate(count, value, { duration: 2, ease: "easeOut" });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 },
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [count, value]);
+
+  return (
+    <span ref={ref}>
+      <motion.span>{rounded}</motion.span>
+      {suffix}
+    </span>
+  );
+}
 
 export function HeroSection() {
+  const stats = [
+    { value: 15, suffix: "+", label: "Years Experience" },
+    { value: 200, suffix: "+", label: "Projects Done" },
+    { value: 50, suffix: "+", label: "Clients Served" },
+  ];
+
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-20">
-      {/* Background */}
+    <section className="relative flex max-h-screen flex-col justify-start items-center overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop"
-          alt=""
+          src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&h=1080&fit=crop"
+          alt="Construction project"
           fill
           priority
-          className="object-cover opacity-35"
+          className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[#e8eef6]/85" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#e8eef6]/70 to-[#e8eef6]" />
+        <div className="absolute inset-0 bg-linear-to-b from-[#000000]/80 via-[#000000]/70 to-[#000000]/90" />
       </div>
 
-      {/* Gradient orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -left-40 -top-40 h-96 w-96 animate-orb rounded-full bg-[#D62839]/20 blur-[100px]" />
-        <div className="absolute right-0 top-1/2 h-80 w-80 animate-orb rounded-full bg-[#4BA3C3]/15 blur-[80px]" style={{ animationDelay: "-5s" }} />
-        <div className="absolute bottom-20 left-1/2 h-64 w-64 animate-orb rounded-full bg-[#175676]/30 blur-[60px]" style={{ animationDelay: "-10s" }} />
-      </div>
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pt-36 pb-20 lg:pt-44 flex flex-col items-center justify-center">
+        <div className="max-w-3xl">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="font-heading mt-6 text-4xl font-bold leading-[1.1] text-white sm:text-4xl lg:text-4xl xl:text-[60px]"
+          >
+            Fire Protection & Construction Solutions Built for Modern
+            Infrastructure
+          </motion.h1>
 
-      {/* Grid overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage: `linear-gradient(#4BA3C3 1px, transparent 1px), linear-gradient(90deg, #4BA3C3 1px, transparent 1px)`,
-          backgroundSize: "80px 80px",
-        }}
-      />
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+            className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl"
+          >
+            Delivering reliable firestop, fireproofing, thermal insulation, and
+            specialized construction services across the UAE.
+          </motion.p>
 
-      <div className="relative z-10 mx-auto max-w-4xl text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl md:text-6xl"
-        >
-          Certified Firestop & Passive Fire Protection Solutions
-        </motion.h1>
-
-        <motion.p
-          className="mt-6 font-display text-xl font-semibold tracking-wide sm:text-2xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-        >
-          <span className="bg-gradient-to-r from-[#4BA3C3] to-[#175676] bg-clip-text text-transparent">
-            Securing Spaces. Protecting Life.
-          </span>
-        </motion.p>
-
-        <motion.p
-          className="mt-6 max-w-2xl mx-auto text-base leading-relaxed text-slate-600 sm:text-lg"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.25 }}
-        >
-          Professional firestop contractor delivering code-compliant passive fire protection systems for commercial, residential, and industrial projects.
-        </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="mt-10 flex flex-col gap-4 sm:flex-row"
+          >
+            <Button href="/#contact">Request Consultation</Button>
+            <Button
+              href="/#projects"
+              variant="outline"
+              className="!border-white/30 !text-white hover:!bg-white/10"
+            >
+              View Projects
+            </Button>
+          </motion.div>
+        </div>
 
         <motion.div
-          className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.35 }}
-        >
-          <Link href="#contact">
-            <motion.span
-              className="font-display inline-block rounded-xl bg-[#D62839] px-10 py-3.5 text-sm font-bold tracking-wide text-white shadow-[0_0_30px_-5px_rgba(214,40,57,0.5)] transition-all hover:bg-[#BA324F] hover:shadow-[0_0_40px_-5px_rgba(214,40,57,0.6)]"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Request a Technical Consultation
-            </motion.span>
-          </Link>
-          <Link href="/services">
-            <motion.span
-              className="font-display inline-block rounded-xl border-2 border-[#4BA3C3]/60 bg-[#4BA3C3]/10 px-10 py-3.5 text-sm font-bold tracking-wide text-[#4BA3C3] backdrop-blur-sm transition-all hover:bg-[#4BA3C3]/20"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              View Our Projects
-            </motion.span>
-          </Link>
-        </motion.div>
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-20 grid gap-6 sm:grid-cols-3 lg:max-w-2xl"
+        ></motion.div>
       </div>
 
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
+        transition={{ delay: 1 }}
       >
         <motion.div
-          className="flex flex-col items-center gap-2"
-          animate={{ y: [0, 6, 0] }}
+          animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-2"
         >
-          <span className="font-display text-xs font-medium uppercase tracking-widest text-slate-600">Scroll</span>
-          <div className="h-8 w-px bg-gradient-to-b from-[#4BA3C3]/60 to-transparent" />
+          <span className="text-xs font-medium uppercase tracking-widest text-slate-400">
+            Scroll
+          </span>
+          <div className="h-10 w-px bg-gradient-to-b from-[#4BA3C3] to-transparent" />
         </motion.div>
       </motion.div>
     </section>

@@ -1,15 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { siteConfig } from "@/data/site";
 
-// Update with your contact details
-const contactInfo = {
-  phone: "+971 50 123 4567",
-  email: "info@nadil.com",
-  address: "Dubai, UAE",
-};
-
-// Update href with your social media profile URLs
 const socialLinks = [
   {
     name: "LinkedIn",
@@ -38,24 +32,37 @@ const socialLinks = [
       </svg>
     ),
   },
-  {
-    name: "Facebook",
-    href: "#",
-    icon: (
-      <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-      </svg>
-    ),
-  },
 ];
+
+const inputClass =
+  "w-full rounded-xl border border-[#4BA3C3]/20 bg-white px-4 py-3.5 text-slate-900 placeholder-slate-400 transition-colors focus:border-[#4BA3C3] focus:outline-none focus:ring-2 focus:ring-[#4BA3C3]/20";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validate = (formData: FormData) => {
+    const newErrors: Record<string, string> = {};
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const message = formData.get("message") as string;
+
+    if (!name?.trim()) newErrors.name = "Name is required";
+    if (!email?.trim()) newErrors.email = "Email is required";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) newErrors.email = "Enter a valid email";
+    if (!message?.trim()) newErrors.message = "Message is required";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
+
+    if (!validate(formData)) return;
+
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const phone = formData.get("phone") as string;
@@ -65,141 +72,146 @@ export function ContactForm() {
     const body = encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`
     );
-    window.location.href = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`;
     setSubmitted(true);
+    setTimeout(() => {
+      window.location.href = `mailto:${siteConfig.email}?subject=${subject}&body=${body}`;
+    }, 1200);
   };
 
   return (
-    <div className="flex flex-col gap-12 lg:flex-row lg:items-stretch lg:gap-12">
-      {/* Contact info - dark theme */}
-      <div className="w-full rounded-2xl border border-[#4BA3C3]/25 bg-slate-100/95 p-8 backdrop-blur-sm shadow-sm lg:max-w-md">
-        <div className="space-y-8">
-          {/* Phone */}
-          <div className="flex gap-5">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#D62839] text-white">
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-            </div>
-            <div>
-              <p className="font-display text-sm font-bold text-slate-800">Phone</p>
-              <a href={`tel:${contactInfo.phone.replace(/\s/g, "")}`} className="mt-1 block text-slate-600 hover:text-[#4BA3C3]">
-                {contactInfo.phone}
-              </a>
-            </div>
+    <div className="grid gap-8 lg:grid-cols-2">
+      <div className="space-y-6">
+        <div className="glass-card rounded-2xl p-8">
+          <h3 className="font-heading text-xl font-bold text-slate-900">Contact Information</h3>
+          <div className="mt-8 space-y-6">
+            {[
+              {
+                label: "Address",
+                value: siteConfig.address,
+                icon: (
+                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                  </svg>
+                ),
+              },
+              {
+                label: "Phone",
+                value: siteConfig.phone,
+                href: `tel:${siteConfig.phone.replace(/\s/g, "")}`,
+                icon: (
+                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                ),
+              },
+              {
+                label: "Email",
+                value: siteConfig.email,
+                href: `mailto:${siteConfig.email}`,
+                icon: (
+                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                ),
+              },
+            ].map((item) => (
+              <div key={item.label} className="flex gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#175676] text-white">
+                  {item.icon}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-slate-800">{item.label}</p>
+                  {item.href ? (
+                    <a href={item.href} className="mt-0.5 text-sm text-slate-600 hover:text-[#4BA3C3]">
+                      {item.value}
+                    </a>
+                  ) : (
+                    <p className="mt-0.5 text-sm text-slate-600">{item.value}</p>
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* Email */}
-          <div className="flex gap-5">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#D62839] text-white">
-              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <div>
-              <p className="font-display text-sm font-bold text-slate-800">Email ID</p>
-              <a href={`mailto:${contactInfo.email}`} className="mt-1 block text-slate-600 hover:text-[#4BA3C3]">
-                {contactInfo.email}
-              </a>
-            </div>
-          </div>
-
-          {/* Address */}
-          <div className="flex gap-5">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#D62839] text-white">
-              <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-              </svg>
-            </div>
-            <div>
-              <p className="font-display text-sm font-bold text-slate-800">Address</p>
-              <p className="mt-1 text-slate-600">{contactInfo.address}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Social icons */}
-        <div className="mt-10 border-t border-[#4BA3C3]/20 pt-8">
-          <p className="mb-4 font-display text-sm font-bold text-slate-800">Follow us</p>
-          <div className="flex gap-3">
+          <div className="mt-8 flex gap-3">
             {socialLinks.map((social) => (
               <a
                 key={social.name}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#4BA3C3]/25 bg-slate-100 text-slate-600 transition-all hover:border-[#4BA3C3]/50 hover:text-[#4BA3C3]"
                 aria-label={social.name}
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#4BA3C3]/20 text-slate-500 transition-all hover:border-[#4BA3C3] hover:text-[#4BA3C3]"
               >
                 {social.icon}
               </a>
             ))}
           </div>
         </div>
+
+        <div className="overflow-hidden rounded-2xl border border-[#4BA3C3]/20 shadow-sm">
+          <iframe
+            title="NADIL office location"
+            src={siteConfig.mapEmbed}
+            className="h-64 w-full grayscale-[30%] contrast-[1.1]"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
       </div>
 
-      {/* Form */}
-      <form
-        onSubmit={handleSubmit}
-        className="w-full flex-1 space-y-6 rounded-2xl border border-[#4BA3C3]/25 bg-slate-100/95 p-8 backdrop-blur-sm shadow-sm lg:max-w-md"
-      >
-        <div>
-          <label htmlFor="name" className="mb-2 block text-sm font-semibold text-slate-700">
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            className="w-full rounded-xl border border-[#4BA3C3]/25 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-[#4BA3C3]/50 focus:outline-none focus:ring-1 focus:ring-[#4BA3C3]/50"
-            placeholder="Your name"
-          />
+      <form onSubmit={handleSubmit} className="glass-card relative rounded-2xl p-8">
+        <AnimatePresence>
+          {submitted && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="absolute inset-0 z-10 flex flex-col items-center justify-center rounded-2xl bg-white/95 backdrop-blur-sm"
+            >
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", stiffness: 200 }}
+                className="flex h-16 w-16 items-center justify-center rounded-full bg-[#4BA3C3]/10"
+              >
+                <svg className="h-8 w-8 text-[#4BA3C3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </motion.div>
+              <p className="font-heading mt-4 text-xl font-bold text-slate-900">Message Sent!</p>
+              <p className="mt-2 text-sm text-slate-500">Opening your email client...</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <h3 className="font-heading text-xl font-bold text-slate-900">Send Us a Message</h3>
+        <div className="mt-8 space-y-5">
+          <div>
+            <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-700">Name</label>
+            <input type="text" id="name" name="name" className={inputClass} placeholder="Your name" />
+            {errors.name && <p className="mt-1 text-xs text-[#D62839]">{errors.name}</p>}
+          </div>
+          <div>
+            <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-700">Email</label>
+            <input type="email" id="email" name="email" className={inputClass} placeholder="your@email.com" />
+            {errors.email && <p className="mt-1 text-xs text-[#D62839]">{errors.email}</p>}
+          </div>
+          <div>
+            <label htmlFor="phone" className="mb-2 block text-sm font-medium text-slate-700">Phone</label>
+            <input type="tel" id="phone" name="phone" className={inputClass} placeholder="+971 50 123 4567" />
+          </div>
+          <div>
+            <label htmlFor="message" className="mb-2 block text-sm font-medium text-slate-700">Message</label>
+            <textarea id="message" name="message" rows={4} className={inputClass} placeholder="Tell us about your project..." />
+            {errors.message && <p className="mt-1 text-xs text-[#D62839]">{errors.message}</p>}
+          </div>
+          <button
+            type="submit"
+            className="w-full rounded-xl bg-[#D62839] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_4px_24px_-4px_rgba(214,40,57,0.5)] transition-all hover:bg-[#BA324F]"
+          >
+            Send Message
+          </button>
         </div>
-        <div>
-          <label htmlFor="email" className="mb-2 block text-sm font-semibold text-slate-700">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            className="w-full rounded-xl border border-[#4BA3C3]/25 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-[#4BA3C3]/50 focus:outline-none focus:ring-1 focus:ring-[#4BA3C3]/50"
-            placeholder="your@email.com"
-          />
-        </div>
-        <div>
-          <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-slate-700">
-            Phone
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            className="w-full rounded-xl border border-[#4BA3C3]/25 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-[#4BA3C3]/50 focus:outline-none focus:ring-1 focus:ring-[#4BA3C3]/50"
-            placeholder="+971 50 123 4567"
-          />
-        </div>
-        <div>
-          <label htmlFor="message" className="mb-2 block text-sm font-semibold text-slate-700">
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            required
-            rows={4}
-            className="w-full rounded-xl border border-[#4BA3C3]/25 bg-slate-50 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-[#4BA3C3]/50 focus:outline-none focus:ring-1 focus:ring-[#4BA3C3]/50"
-            placeholder="Your message..."
-          />
-        </div>
-        <button
-          type="submit"
-          className="font-display w-full rounded-xl bg-[#D62839] px-6 py-3.5 text-sm font-bold tracking-wide text-white shadow-[0_0_30px_-5px_rgba(214,40,57,0.5)] transition-all hover:bg-[#BA324F] hover:shadow-[0_0_40px_-5px_rgba(214,40,57,0.6)]"
-        >
-          {submitted ? "Opening email..." : "Send Message"}
-        </button>
       </form>
     </div>
   );

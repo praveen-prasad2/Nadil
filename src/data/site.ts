@@ -80,7 +80,7 @@ export const projects = [
     title: "Luxury Residential Development",
     category: "Residential",
     location: "Dubai, UAE",
-    image: "https://images.unsplash.com/photo-1545324418-cc32a3dca2f8?w=800&h=1000&fit=crop",
+    image: "/images/luxury residential development dubai.jpg",
     description: "Acoustic sealants and thermal insulation for premium residential towers.",
   },
   {

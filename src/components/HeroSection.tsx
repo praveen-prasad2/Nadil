@@ -54,12 +54,12 @@ export function HeroSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 pt-36 pb-20 lg:pt-44 flex flex-col items-center justify-center">
-        <div className="max-w-3xl">
+        <div className="max-w-4xl flex flex-col items-center justify-center">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-heading mt-6 text-4xl font-bold leading-[1.1] text-white sm:text-4xl lg:text-4xl xl:text-[60px]"
+            className="font-heading mt-6 text-4xl font-bold leading-[1.1] text-white sm:text-4xl lg:text-4xl xl:text-[60px] text-center"
           >
             Fire Protection & Construction Solutions Built for Modern
             Infrastructure
@@ -69,7 +69,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.25 }}
-            className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl"
+            className=" max-w-2xl text-[20px] leading-relaxed text-slate-300 sm:text-xl text-center"
           >
             Delivering reliable firestop, fireproofing, thermal insulation, and
             specialized construction services across the UAE.
@@ -79,7 +79,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-10 flex flex-col gap-4 sm:flex-row"
+            className="mt-4 flex flex-col gap-4 sm:flex-row"
           >
             <Button href="/#contact">Request Consultation</Button>
             <Button
@@ -100,23 +100,7 @@ export function HeroSection() {
         ></motion.div>
       </div>
 
-      <motion.div
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2"
-        >
-          <span className="text-xs font-medium uppercase tracking-widest text-slate-400">
-            Scroll
-          </span>
-          <div className="h-10 w-px bg-gradient-to-b from-[#4BA3C3] to-transparent" />
-        </motion.div>
-      </motion.div>
+  
     </section>
   );
 }
